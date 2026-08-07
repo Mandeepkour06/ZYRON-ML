@@ -1,4 +1,16 @@
-# ABTalks - 60-Day Coding Challenge Platform
+# ABTalks 60-Day Challenge
+
+## Live Demo
+https://abtalks-blond.vercel.app
+
+## Tech Stack
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel
+
+---
 
 A modern, interactive platform for developers to complete a 60-day coding challenge. Built with Next.js, TypeScript, and Tailwind CSS.
 
