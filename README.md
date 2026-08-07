@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ABTalks - 60-Day Coding Challenge Platform
 
-## Getting Started
+A modern, interactive platform for developers to complete a 60-day coding challenge. Built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **60 Complete Challenges** - From beginner to advanced projects
+- **Real-time Progress Tracking** - XP, streaks, and completion stats
+- **Interactive Dashboard** - Visual progress indicators and daily challenges
+- **Leaderboard System** - Compete with other developers
+- **LocalStorage Persistence** - Progress saved automatically
+- **Responsive Design** - Works on all devices
+- **Dark Theme** - Professional UI with smooth animations
+
+## 📋 Pages
+
+- **Landing Page** (`/`) - Introduction and sign-up
+- **Dashboard** (`/dashboard`) - Main hub with current challenge
+- **Challenge Pages** (`/day/[id]`) - Detailed daily challenges (1-60)
+- **Leaderboard** (`/leaderboard`) - Rankings and stats
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 16.3.0 with App Router
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State Management:** React Hooks + LocalStorage
+- **Deployment:** Vercel-ready
+
+## 🏃 Getting Started
+
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build for production:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📂 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+abtalks/
+├── app/
+│   ├── page.tsx              # Landing page
+│   ├── dashboard/            # Dashboard page
+│   ├── day/[id]/            # Dynamic challenge pages
+│   └── leaderboard/         # Leaderboard page
+├── lib/
+│   ├── data.ts              # Challenge data (60 days)
+│   └── leaderboard.ts       # Leaderboard mock data
+├── public/                   # Static assets
+└── package.json             # Dependencies
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎮 How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Start Challenge** - Visit dashboard and begin Day 1
+2. **Complete Tasks** - Follow step-by-step instructions
+3. **Submit Work** - Optional GitHub/Live URLs (demo mode available)
+4. **Earn XP** - 100 XP per completed challenge
+5. **Track Progress** - See your rank on the leaderboard
 
-## Deploy on Vercel
+## 🏆 Challenge Categories
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Days 1-20:** Beginner (HTML, CSS, JavaScript fundamentals)
+- **Days 21-45:** Intermediate (React, APIs, State Management)
+- **Days 46-60:** Advanced (Full-stack, Complex Architectures)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📊 Features in Detail
+
+### Dashboard
+- Current day challenge preview
+- XP and streak tracking
+- Progress visualization
+- AI Mentor guidance
+
+### Challenge Pages
+- Complete project description
+- Step-by-step instructions with code samples
+- Interactive requirements checklist
+- Curated learning resources
+- Optional submission (hackathon demo mode)
+
+### Leaderboard
+- Top 10 students ranking
+- Search and sort functionality
+- Real-time rank calculation
+- Progress comparison
+
+## 🎨 Design System
+
+- **Colors:** Dark theme (Black, Gray-900, Blue-500 accents)
+- **Typography:** System fonts with careful hierarchy
+- **Spacing:** Consistent padding and margins
+- **Components:** Reusable, accessible UI elements
+
+## 📱 Responsive Design
+
+- Mobile-first approach
+- Breakpoints: 768px (tablet), 1024px (desktop)
+- Touch-friendly interactions
+- Optimized layouts for all screen sizes
+
+## 🔒 Data Persistence
+
+Progress is saved to browser localStorage:
+- Current day
+- Total XP
+- Streak count
+- Completed challenges
+- Submission history
+
+## 🚀 Deployment
+
+Deploy to Vercel:
+
+```bash
+vercel
+```
+
+Or use the [Vercel Platform](https://vercel.com/new) - one-click deployment from GitHub.
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 👥 Credits
+
+Built for the ABTalks 60-day developer challenge initiative.
+
+---
+
+**Last Updated:** August 7, 2026  
+**Version:** 1.0.0  
+**Status:** Production Ready 🎉
