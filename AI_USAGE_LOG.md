@@ -93,6 +93,13 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Created this log documenting every significant interaction chronologically.
 - **Files created:** `AI_USAGE_LOG.md`
 
+### 13. Create project context & task tracker
+
+- **Goal:** Preserve full project state and task tracking for seamless continuation.
+- **Prompt:** "Create a PROJECT_CONTEXT.md file... Create a TODO.md file..."
+- **Summary:** Added `PROJECT_CONTEXT.md` (overview, hackathon requirements, progress, folder structure, design decisions, route map, deployment, GitHub/Vercel, AWS plans, bugs, next tasks, AI summary, continuation notes) and `TODO.md` (completed/current/remaining tasks, bugs, hackathon + deployment checklists).
+- **Files created:** `PROJECT_CONTEXT.md`, `TODO.md`
+
 ---
 
 *Entries are appended automatically before each commit.*
