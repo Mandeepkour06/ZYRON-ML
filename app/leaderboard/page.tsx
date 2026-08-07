@@ -103,19 +103,19 @@ export default function LeaderboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Navigation */}
       <nav className="bg-gray-900 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold text-blue-500">
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-blue-500">
               ABTalks
             </Link>
-            <div className="flex items-center gap-6">
-              <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <Link href="/dashboard" className="text-gray-400 hover:text-white transition-colors text-sm">
                 Dashboard
               </Link>
-              <Link href="/leaderboard" className="text-white font-medium">
+              <Link href="/leaderboard" className="text-white font-medium text-sm">
                 Leaderboard
               </Link>
             </div>
@@ -123,15 +123,15 @@ export default function LeaderboardPage() {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">🏆 Leaderboard</h1>
-          <p className="text-gray-400">See how you rank against other students in the challenge</p>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">🏆 Leaderboard</h1>
+          <p className="text-gray-400 text-sm sm:text-base">See how you rank against other students in the challenge</p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
           <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium opacity-90">Your Rank</span>
@@ -302,19 +302,19 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Additional Info */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {/* How Rankings Work */}
-          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <h2 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
               <span>ℹ️</span> How Rankings Work
             </h2>
-            <ul className="space-y-3 text-gray-300 text-sm">
+            <ul className="space-y-3 text-gray-300 text-sm leading-relaxed">
               <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-1">•</span>
+                <span className="text-blue-500 mt-1 flex-shrink-0">•</span>
                 <span>Rankings are based on total XP earned</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-500 mt-1">•</span>
+                <span className="text-blue-500 mt-1 flex-shrink-0">•</span>
                 <span>Each completed challenge awards 100 XP</span>
               </li>
               <li className="flex items-start gap-2">
