@@ -122,6 +122,13 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** The mobile coach card was already rendering correctly at 390px (visible, above fold, all elements present). The only issue was a button text mismatch: the quick-question chip said "Tell me about my streak" but the requirement was "Tell me about my stats". Updated `quickQuestions` in `lib/coach.ts` and added `stats` to the regex pattern in `getCoachResponse` so tapping "Tell me about my stats" returns the student's XP, completed days, and progress data. Desktop layout completely untouched.
 - **Files modified:** `lib/coach.ts` (button text + regex pattern)
 
+### 17. Reorder mobile dashboard sections
+
+- **Goal:** Change the mobile-only section order so Code Mentor AI appears after Today's Challenge instead of before it.
+- **Prompt:** "Reorder the existing dashboard sections to: 1. Welcome, 2. Stats, 3. Today's Challenge, 4. Code Mentor AI, 5. Your Journey, 6. Quick Stats, 7. Next Milestones."
+- **Summary:** Moved the mobile-only coach card (`lg:hidden`) from before the main grid to inside the main content div, between Today's Challenge and Your Journey. Desktop layout completely untouched — the sidebar card (`hidden lg:block`) remains in its original position.
+- **Files modified:** `app/dashboard/page.tsx` (moved mobile-only coach card)
+
 ---
 
 *Entries are appended automatically before each commit.*

@@ -132,81 +132,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Mobile-only AI Learning Coach — above the fold on 390px */}
-        <div className="lg:hidden mb-4 sm:mb-6">
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 sm:p-6 shadow-sm text-white">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
-                🤖
-              </div>
-              <div className="min-w-0">
-                <h2 className="text-lg sm:text-xl font-bold truncate">CodeMentor AI</h2>
-                <p className="text-blue-100 text-xs sm:text-sm">Your AI Learning Coach</p>
-              </div>
-            </div>
-
-            <p className="text-white mb-1 text-sm sm:text-base">{coachGreeting}</p>
-            <p className="text-blue-200 text-xs sm:text-sm mb-4">{coachStatus}</p>
-
-            <div className="space-y-3 mb-4">
-              {coachTips.map((tip, i) => (
-                <div key={i} className="flex gap-2 items-start">
-                  <span className="text-blue-200 text-sm mt-1 flex-shrink-0">💡</span>
-                  <p className="text-blue-50 text-sm leading-relaxed">{tip}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-3">
-              {quickQuestions.map((qq) => (
-                <button
-                  key={qq}
-                  onClick={() => askCoach(qq)}
-                  className="px-3 py-2 bg-white/15 hover:bg-white/25 text-blue-50 text-xs rounded-full transition-colors min-h-[44px]"
-                >
-                  {qq}
-                </button>
-              ))}
-            </div>
-
-            {messages.length > 0 && (
-              <div className="mb-3 max-h-40 overflow-y-auto space-y-2">
-                {messages.map((m, i) => (
-                  <div
-                    key={i}
-                    className={`text-sm leading-relaxed rounded-lg px-3 py-2 ${
-                      m.role === 'coach'
-                        ? 'bg-white/15 text-blue-50'
-                        : 'bg-black/30 text-white'
-                    }`}
-                  >
-                    {m.text}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <form
-              onSubmit={(e) => { e.preventDefault(); askCoach(question); }}
-              className="flex gap-2"
-            >
-              <input
-                type="text"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Ask me anything..."
-                className="flex-1 min-w-0 px-3 py-2 bg-black/30 border border-white/20 text-white text-base rounded-lg placeholder-blue-200 outline-none focus:ring-2 focus:ring-white/40 min-h-[44px]"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-white text-blue-700 text-sm font-semibold rounded-lg hover:bg-blue-50 transition-colors min-h-[44px]"
-              >
-                Ask
-              </button>
-            </form>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-4 sm:space-y-6">
@@ -253,6 +178,81 @@ export default function Dashboard() {
                   <p className="text-gray-400">Congratulations! You've completed all available challenges.</p>
                 </div>
               )}
+            </div>
+
+            {/* Mobile-only AI Learning Coach — between Today's Challenge and Your Journey */}
+            <div className="lg:hidden">
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 sm:p-6 shadow-sm text-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
+                    🤖
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-lg sm:text-xl font-bold truncate">CodeMentor AI</h2>
+                    <p className="text-blue-100 text-xs sm:text-sm">Your AI Learning Coach</p>
+                  </div>
+                </div>
+
+                <p className="text-white mb-1 text-sm sm:text-base">{coachGreeting}</p>
+                <p className="text-blue-200 text-xs sm:text-sm mb-4">{coachStatus}</p>
+
+                <div className="space-y-3 mb-4">
+                  {coachTips.map((tip, i) => (
+                    <div key={i} className="flex gap-2 items-start">
+                      <span className="text-blue-200 text-sm mt-1 flex-shrink-0">💡</span>
+                      <p className="text-blue-50 text-sm leading-relaxed">{tip}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {quickQuestions.map((qq) => (
+                    <button
+                      key={qq}
+                      onClick={() => askCoach(qq)}
+                      className="px-3 py-2 bg-white/15 hover:bg-white/25 text-blue-50 text-xs rounded-full transition-colors min-h-[44px]"
+                    >
+                      {qq}
+                    </button>
+                  ))}
+                </div>
+
+                {messages.length > 0 && (
+                  <div className="mb-3 max-h-40 overflow-y-auto space-y-2">
+                    {messages.map((m, i) => (
+                      <div
+                        key={i}
+                        className={`text-sm leading-relaxed rounded-lg px-3 py-2 ${
+                          m.role === 'coach'
+                            ? 'bg-white/15 text-blue-50'
+                            : 'bg-black/30 text-white'
+                        }`}
+                      >
+                        {m.text}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <form
+                  onSubmit={(e) => { e.preventDefault(); askCoach(question); }}
+                  className="flex gap-2"
+                >
+                  <input
+                    type="text"
+                    value={question}
+                    onChange={(e) => setQuestion(e.target.value)}
+                    placeholder="Ask me anything..."
+                    className="flex-1 min-w-0 px-3 py-2 bg-black/30 border border-white/20 text-white text-base rounded-lg placeholder-blue-200 outline-none focus:ring-2 focus:ring-white/40 min-h-[44px]"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-white text-blue-700 text-sm font-semibold rounded-lg hover:bg-blue-50 transition-colors min-h-[44px]"
+                  >
+                    Ask
+                  </button>
+                </form>
+              </div>
             </div>
 
             {/* Your Journey */}
