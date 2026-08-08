@@ -92,20 +92,39 @@ function nextMilestone(s: CoachState): string {
   return 'You have completed every milestone — legendary!';
 }
 
-// Rule-based Q&A. Every answer folds in the student's actual numbers so the
-// coach feels aware of their progress during the demo.
+// Rule-based Q&A with flexible intent matching. Every answer folds in the
+// student's actual numbers so the coach feels aware of their progress.
 export function getCoachResponse(s: CoachState, question: string): string {
   const q = question.toLowerCase();
   const done = daysCompleted(s);
   const today = Math.min(s.currentDay, 60);
+  const left = daysRemaining(s);
+  const pct = progressPct(s);
 
-  if (/(what should i|what do i|today|next|which day|where.*start)/.test(q)) {
-    return done === 0
-      ? `Let's get moving. Start with Day 1: Build Your Portfolio Website — it earns you 100 XP and creates your digital identity.`
-      : `Today's focus is Day ${today}. Complete it to earn 100 XP and ${s.streak > 0 ? `extend your ${s.streak}-day streak` : 'start a new streak'}.`;
+  // What to learn next / learning path
+  if (/(what.*(should|do|can).*(i|to).*(learn|study|read|practice|explore)|learn.*(next|new|more)|next.*(skill|topic|thing|step)|what.*next)/.test(q)) {
+    if (done === 0) {
+      return `Start with Day 1: Build Your Portfolio Website — it earns you 100 XP and creates your digital identity. That's the best foundation for everything that follows.`;
+    }
+    const nextDay = Math.min(today + 1, 60);
+    return `After Day ${today}, move to Day ${nextDay}. Each day teaches a new skill — by Day ${Math.min(today + 7, 60)} you'll have a solid foundation. Keep the momentum going!`;
   }
 
-  if (/(streak|habit|consistent)/.test(q)) {
+  // Today's challenge / what to focus on
+  if (/(what.*(should|do|can|to).*(i|do|focus|work|start|tackle)|today.*(challenge|task|project|do)|which day|where.*start|current day|day\s*\d)/.test(q)) {
+    if (done === 0) {
+      return `Start with Day 1: Build Your Portfolio Website — it earns you 100 XP and creates your digital identity. That's the best place to begin your journey.`;
+    }
+    return `Today's focus is Day ${today}. Complete it to earn 100 XP and ${s.streak > 0 ? `extend your ${s.streak}-day streak` : 'start a new streak'}. You've got this!`;
+  }
+
+  // Streak
+  if (/(streak|habit|consistent|daily|consecutive|keep.*going|maintain)/.test(q)) {
+    if (/(improve|increase|grow|better|longer|how.*can.*i)/.test(q)) {
+      return s.streak > 0
+        ? `To grow your ${s.streak}-day streak, set a daily reminder and complete each challenge before midnight. Even 30 minutes counts — consistency beats perfection.`
+        : `Start a new streak today! Complete Day ${today} and come back tomorrow. Set a phone reminder at a time you're usually free — that one habit changes everything.`;
+    }
     if (s.streak > 0) {
       return `Your current streak is ${s.streak} day${s.streak === 1 ? '' : 's'} 🔥. It grows one day at a time — finish today's challenge to keep it alive.`;
     }
@@ -115,43 +134,67 @@ export function getCoachResponse(s: CoachState, question: string): string {
     return `You don't have a streak yet, and that's fine — it starts today. Complete Day 1, come back tomorrow for Day 2, and consistency does the rest.`;
   }
 
-  if (/(xp|points|score|rank|stats)/.test(q)) {
+  // XP / points / score
+  if (/(xp|points|score|rank|stats|how much|how many.*point)/.test(q)) {
+    if (/(days|completed|done|finished)/.test(q)) {
+      return `You've completed ${done} of 60 days (${pct}%). ${left > 0 ? `${left} days to go — you're making real progress.` : 'You finished all 60 days — incredible!'}`;
+    }
     return `You have ${s.xp} XP from ${done} completed day${done === 1 ? '' : 's'}. Every challenge is worth 100 XP, so completing Day ${today} takes you to ${s.xp + 100} XP.`;
   }
 
-  if (/(progress|how.*doing|how.*far|doing.*well)/.test(q)) {
-    return done === 0
-      ? `You're at the very start of the challenge — 0 of 60 days done. Every expert was once a beginner, so Day 1 is the most important step.`
-      : `You're ${progressPct(s)}% through — ${done} of 60 days done, ${daysRemaining(s)} remaining. That's steady, real progress.`;
+  // Progress / how am I doing
+  if (/(progress|how.*(am i|doing|far|going|well)|status|where.*i.*stand)/.test(q)) {
+    if (done === 0) {
+      return `You're at the very start of the challenge — 0 of 60 days done. Every expert was once a beginner, so Day 1 is the most important step.`;
+    }
+    if (done >= 50) {
+      return `You're ${pct}% through — ${done} of 60 days done! You're in the final stretch. Only ${left} days to go — finish strong.`;
+    }
+    return `You're ${pct}% through — ${done} of 60 days done, ${left} remaining. That's steady, real progress. Keep it up!`;
   }
 
-  if (/(stuck|hard|difficult|confused|help|can't|not working|bug)/.test(q)) {
+  // Stuck / difficulty / trouble — specific patterns, not generic "help"
+  if (/(stuck|hard to|difficult|confused|can't (?:do|figure|get|make|understand)|not working|bug|trouble|struggling|issue|problem|error|fail|stumped|overwhelmed|frustrat)/.test(q)) {
+    if (/(today|current|this.*challenge|this.*day)/.test(q)) {
+      return `For today's challenge (Day ${today}), try breaking it into smaller steps. Re-read the instructions, check the Resources section, and tackle one piece at a time. You can always come back to it.`;
+    }
     return `Getting stuck is part of building. Re-read the step-by-step instructions on the challenge page, check the linked resources, and break the task into smaller pieces. Progress is saved automatically, so you can come back anytime.`;
   }
 
-  if (/(milestone|goal|target)/.test(q)) {
+  // Milestones / goals
+  if (/(milestone|goal|target|achievement|badge)/.test(q)) {
     return `Your next milestone: ${nextMilestone(s)}. Milestones are worth celebrating — hit it and the next one feels closer.`;
   }
 
-  if (/(motivat|tired|give up|quit|lazy)/.test(q)) {
+  // Motivation / tired / quit
+  if (/(motivat|tired|give up|quit|lazy|unmotivat|bored|done.*with|why.*bother)/.test(q)) {
     return done > 0
       ? `You've got this — you're ${done} days in, which is further than most people ever get. Focus only on today's challenge. Small steps beat heroic effort. 💪`
       : `You've got this. Focus only on today's challenge — small consistent steps beat heroic effort, and your streak starts now. 💪`;
   }
 
-  if (/(time|schedule|busy|manage)/.test(q)) {
+  // Time management
+  if (/(time|schedule|busy|manage|when|how long|minute|hour)/.test(q)) {
     return `Block 30–45 focused minutes a day for your challenge. Set a daily reminder and treat it like a meeting you can't skip. Consistency beats marathon sessions.`;
   }
 
-  if (/(portfolio|project|idea|what.*build)/.test(q)) {
+  // Projects / portfolio / what to build
+  if (/(portfolio|project|idea|what.*build|app|website|tool)/.test(q)) {
     return `Every day builds a real project — portfolios, apps, tools. Browse the Resources on any challenge page for curated docs and tutorials, and pick projects that interest you to stay motivated.`;
   }
 
-  if (/(who are you|what can you do|what are you)/.test(q)) {
-    return `I'm CodeMentor AI, your personal coach for this 60-day challenge. Ask me about today's challenge, your streak, XP, milestones, or tell me you're stuck — I'll nudge you in the right direction.`;
+  // Conversational — greeting / "can I ask" / general question
+  if (/(^(hi|hello|hey|howdy|good (morning|afternoon|evening)|yo\b)|can i ask|just asking|quick question|tell me|explain|what do you|how do you|do you know)/.test(q)) {
+    return `Of course! I'm here to help with your 60-day challenge. Ask me about today's task, your XP, streak, progress, what to learn next, or if you're stuck on something — I'll give you a tailored answer.`;
   }
 
-  return `Good question! I can help with today's challenge, your streak, XP, or motivation. Try "What should I do today?" or "How am I doing?" — or just start Day ${today} and let momentum do the rest.`;
+  // Who are you / what can you do
+  if (/(who are you|what can you do|what are you|introduce|about you)/.test(q)) {
+    return `I'm CodeMentor AI, your personal coach for this 60-day challenge. I know your progress, streak, and XP — ask me anything about your journey and I'll give you a tailored answer.`;
+  }
+
+  // Fallback
+  return `I'm your Code Mentor for this 60-day journey. Ask me about today's challenge, your progress, XP, streak, what to learn next, or getting unstuck — I'll give you a tailored answer based on where you are.`;
 }
 
 // One-tap prompts for the demo — touch-friendly and screenshot-friendly.

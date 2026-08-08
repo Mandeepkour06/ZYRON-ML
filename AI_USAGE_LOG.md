@@ -129,6 +129,13 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Moved the mobile-only coach card (`lg:hidden`) from before the main grid to inside the main content div, between Today's Challenge and Your Journey. Desktop layout completely untouched — the sidebar card (`hidden lg:block`) remains in its original position.
 - **Files modified:** `app/dashboard/page.tsx` (moved mobile-only coach card)
 
+### 18. Improve mentor free-text responses
+
+- **Goal:** Fix the "Ask Me Anything" input so different free-text questions produce different contextual responses.
+- **Prompt:** "Fix the actual free-text response logic... implement conversational, rule-based intent handling."
+- **Summary:** The stuck intent regex contained the overly generic keyword `"help"`, which matched any question containing "help" (including "Can I ask you something?") and routed it to the stuck response. Fixed by removing `"help"` and using more specific patterns (`"can't (?:do|figure|get)"`, `"stumped"`, `"overwhelmed"`, `"frustrat"`). Split the "what should I do" intent into two: learning-path questions ("what should I learn next") get a different response than challenge-focus questions ("what should I focus on today"). Added a conversational intent for greetings and polite openers ("Can I ask you something?", "quick question"). All 7 test questions now produce unique, contextually appropriate responses.
+- **Files modified:** `lib/coach.ts` (stuck intent regex, split learning/challenge intent, added conversational intent)
+
 ---
 
 *Entries are appended automatically before each commit.*
