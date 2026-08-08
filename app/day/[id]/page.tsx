@@ -315,7 +315,7 @@ export default function ChallengeDayPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-2 lg:self-start space-y-4 sm:space-y-6">
             {/* Skills Section */}
             <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">

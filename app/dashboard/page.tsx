@@ -134,7 +134,7 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-2 lg:self-start space-y-4 sm:space-y-6">
             {/* Today's Challenge */}
             <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 shadow-sm border border-gray-800">
               <div className="flex items-center justify-between mb-4 sm:mb-6">
