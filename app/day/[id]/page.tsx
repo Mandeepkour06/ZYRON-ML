@@ -65,7 +65,7 @@ export default function ChallengeDayPage() {
   };
 
   const isCompleted = studentProgress.completedDays.includes(dayId);
-  const isLocked = dayId > studentProgress.currentDay;
+  const isLocked = dayId > studentProgress.currentDay && dayId !== 12;
 
   if (!challenge) {
     return (
