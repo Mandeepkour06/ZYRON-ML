@@ -183,7 +183,7 @@ No AWS resources have been created yet. No costs incurred.
 
 ## AI Usage Summary
 
-Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`** (19 entries as of the last commit). Highlights:
+Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`** (22 entries as of the last commit). Highlights:
 
 - Scaffolded the Next.js app and built all 4 routes
 - Converted to dark theme, added onboarding state, AI Mentor

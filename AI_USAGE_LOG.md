@@ -143,6 +143,24 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Changed the lock condition on line 68 from `dayId > studentProgress.currentDay` to `dayId > studentProgress.currentDay && dayId !== 12`. This excludes Day 12 from the lock check while keeping all other days locked as before. One-line change. Tested: `/day/12` shows full content (instructions, requirements, resources) with fresh localStorage; `/day/2` still shows "Challenge Locked".
 - **Files modified:** `app/day/[id]/page.tsx` (lock condition)
 
+### 20. Fix dashboard and Day 12 desktop empty space
+
+- **Prompt:** "We will fix ONLY the two HIGH-priority UI issues from the audit. 1. DASHBOARD — 'Your Journey' excessive empty space on desktop. 2. /day/12 — 'Complete Challenge' excessive empty space on desktop."
+- **Summary:** Added `lg:self-start` to the main content div (`lg:col-span-2`) in both `app/dashboard/page.tsx` and `app/day/[id]/page.tsx`. This prevents the main content column from stretching to match the sidebar height on desktop, so sections like "Your Journey" and "Complete Challenge" end naturally at their own height instead of leaving large blank areas.
+- **Files modified:** `app/dashboard/page.tsx`, `app/day/[id]/page.tsx`
+
+### 21. Improve mobile testimonial spacing
+
+- **Prompt:** "Change only the testimonial grid's mobile gap from `gap-4` to `gap-6` in `app/page.tsx`."
+- **Summary:** Increased the mobile gap in the Success Stories testimonial grid from `gap-4` (1rem) to `gap-6` (1.5rem) so the three testimonial cards have better breathing room on 390px viewports.
+- **Files modified:** `app/page.tsx`
+
+### 22. Add LinkedIn proof submission
+
+- **Prompt:** "Implement the LinkedIn proof submission on `/day/12`. The student should be able to add/paste their LinkedIn post URL as proof of completion. Clearly understand that the LinkedIn post is required proof of work. Submit/save the LinkedIn proof alongside the GitHub proof."
+- **Summary:** Added a LinkedIn URL input field to the Complete Challenge form on `/day/12`. The field is labeled "LinkedIn Post URL (Required for proof)" with helper text explaining the requirement. Updated the `StudentProgress.submissions` interface, form state, submission logic, and completion display to include `linkedinUrl`. GitHub and Live Demo remain optional; LinkedIn is marked as required proof.
+- **Files modified:** `app/day/[id]/page.tsx`
+
 ---
 
 *Entries are appended automatically before each commit.*
