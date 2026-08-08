@@ -21,7 +21,7 @@
 - [x] README with live demo link
 - [x] AI usage log (`AI_USAGE_LOG.md`)
 - [x] Project context file (`PROJECT_CONTEXT.md`)
-- [x] AI Learning Coach on dashboard — contextual tips + working Q&A on mobile and desktop (replaces static AI Mentor)
+- [x] AI Learning Coach on dashboard — contextual tips + working Q&A on mobile and desktop, responsive at 390px (replaces static AI Mentor)
 
 ---
 

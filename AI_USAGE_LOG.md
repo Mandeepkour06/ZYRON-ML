@@ -115,6 +115,13 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** After multiple layout attempts broke the desktop sidebar, reverted `app/dashboard/page.tsx` to the last committed state via `git checkout`. Re-applied the coach features cleanly: added coach imports, state, and computed values; added a mobile-only coach card (`lg:hidden`) before the main grid for 390px visibility; upgraded the sidebar AI Mentor card from the original static version (hardcoded tips, dead button) to the full coach version with contextual tips, four quick-question buttons, conversation area, and working input + Ask. Sidebar card uses `hidden lg:block` so it's hidden on mobile (replaced by the mobile coach card). Desktop layout completely untouched.
 - **Files modified:** `app/dashboard/page.tsx` (coach imports, state, mobile-only card, upgraded sidebar card)
 
+### 16. Make AI mentor responsive on mobile
+
+- **Goal:** Fix the Code Mentor AI at 390px mobile viewport — correct button text and response matching.
+- **Prompt:** "Fix the Code Mentor AI at a 390px mobile viewport... Show all four existing suggested questions: What should I do today?, How am I doing?, Tell me about my stats, I'm stuck."
+- **Summary:** The mobile coach card was already rendering correctly at 390px (visible, above fold, all elements present). The only issue was a button text mismatch: the quick-question chip said "Tell me about my streak" but the requirement was "Tell me about my stats". Updated `quickQuestions` in `lib/coach.ts` and added `stats` to the regex pattern in `getCoachResponse` so tapping "Tell me about my stats" returns the student's XP, completed days, and progress data. Desktop layout completely untouched.
+- **Files modified:** `lib/coach.ts` (button text + regex pattern)
+
 ---
 
 *Entries are appended automatically before each commit.*

@@ -115,7 +115,7 @@ export function getCoachResponse(s: CoachState, question: string): string {
     return `You don't have a streak yet, and that's fine — it starts today. Complete Day 1, come back tomorrow for Day 2, and consistency does the rest.`;
   }
 
-  if (/(xp|points|score|rank)/.test(q)) {
+  if (/(xp|points|score|rank|stats)/.test(q)) {
     return `You have ${s.xp} XP from ${done} completed day${done === 1 ? '' : 's'}. Every challenge is worth 100 XP, so completing Day ${today} takes you to ${s.xp + 100} XP.`;
   }
 
@@ -158,6 +158,6 @@ export function getCoachResponse(s: CoachState, question: string): string {
 export const quickQuestions = [
   'What should I do today?',
   'How am I doing?',
-  'Tell me about my streak',
+  'Tell me about my stats',
   'I\'m stuck'
 ];
