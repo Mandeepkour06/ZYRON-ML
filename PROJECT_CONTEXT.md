@@ -99,12 +99,11 @@ abtalks/
 
 ## Route Map
 
-| Route | Page | Purpose |
-|-------|------|---------|
-| `/` | Landing | Marketing + sign-up CTA |
-| `/dashboard` | Dashboard | Current challenge, stats, mentor |
-| `/day/[id]` | Challenge Day | Complete a specific day (1-60) |
-| `/leaderboard` | Leaderboard | Rankings, search, sort |
+| Route        | Page          | Purpose                          |
+| ------------ | ------------- | -------------------------------- |
+| `/`          | Landing       | Marketing + sign-up CTA          |
+| `/dashboard` | Dashboard     | Current challenge, stats, mentor |
+| `/day/12`    | Challenge Day | Day 12: Build Expense Tracker    |
 
 ---
 
