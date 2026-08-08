@@ -36,16 +36,13 @@ export default function Home() {
             by building 60 real-world projects in 60 days.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2 sm:pt-4">
+          <div className="pt-2 sm:pt-4">
             <Link
               href="/dashboard"
-              className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] min-h-[52px] flex items-center justify-center"
+              className="inline-flex w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] min-h-[52px] items-center justify-center"
             >
               Start Your Challenge
             </Link>
-            <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-gray-300 rounded-lg font-semibold text-base sm:text-lg border border-gray-700 hover:border-gray-500 hover:text-white transition-all min-h-[52px] flex items-center justify-center">
-              Watch Demo
-            </button>
           </div>
         </div>
       </section>

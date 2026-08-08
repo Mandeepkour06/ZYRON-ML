@@ -173,6 +173,12 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Conducted comprehensive audit of edge cases and required routes. Tested first-day/no-streak scenario (handled correctly), empty profile (handled correctly), and verified all three routes at 390px with no horizontal scrolling. Identified that missed-day handling relies on streak reset logic which works correctly. Confirmed no HIGH or MEDIUM priority issues remain.
 - **Files modified:** None (audit only)
 
+### 25. Remove Watch Demo button from landing page hero
+
+- **Prompt:** "Remove the 'Watch Demo' button from the landing page hero section. Keep 'Start Challenge' as the primary CTA and make sure the hero layout still looks balanced and polished after removing the secondary button."
+- **Summary:** Removed the secondary "Watch Demo" button from the hero section on `/`. Kept "Start Your Challenge" as the sole CTA. Verified layout at 390px and desktop — no awkward empty space, hero remains balanced.
+- **Files modified:** `app/page.tsx`
+
 ---
 
 *Entries are appended automatically before each commit.*
