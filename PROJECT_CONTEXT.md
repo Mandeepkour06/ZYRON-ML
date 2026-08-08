@@ -37,7 +37,8 @@ All four routes are built, mobile-optimized, and verified live (HTTP 200) on Ver
 ## Features Completed
 
 - [x] Landing page with hero, stats, how-it-works, project types, testimonials, trust indicators, CTA, footer
-- [x] Student dashboard with current day, XP, streak, progress, AI Mentor card, milestones
+- [x] Student dashboard with current day, XP, streak, progress, milestones
+- [x] **AI Learning Coach** on dashboard — progress-aware greeting/tips, contextual Q&A, four one-tap quick-question chips, working input (mobile + desktop)
 - [x] **All 60 challenge days** with title, description, difficulty, time, XP, skills, instructions, requirements, resources
 - [x] Challenge day page with step-by-step instructions, code samples, requirements checklist, resource links
 - [x] Hackathon **demo mode** — optional GitHub/Live URLs, one-click "Mark as Completed"
@@ -54,7 +55,7 @@ All four routes are built, mobile-optimized, and verified live (HTTP 200) on Ver
 - [ ] Real authentication (mock guest mode in place; `isAuthenticated` flag ready)
 - [ ] Backend / database (currently mock JSON + localStorage)
 - [ ] AWS services integration (planned — see below)
-- [ ] Full leaderboard mobile polish on the two bottom info cards
+- [ ] Full leaderboard mobile polish on the two bottom info cards (low priority, non-required route)
 - [ ] Optional: GitHub auto-deploy on push (Vercel Git integration)
 
 ---
@@ -166,22 +167,24 @@ No AWS resources have been created yet. No costs incurred.
 
 - [ ] **Low:** Leaderboard bottom info cards ("How Rankings Work" / "Keep Pushing") only partially mobile-polished — spacing and text scale need a final pass.
 - [ ] **Low:** Verify zero horizontal scroll on all routes at 390px once more (done after last optimization, but re-check if any new content added).
+- [ ] **Low:** Hydration mismatch on `/dashboard` — `joinedDate` formatted via `toLocaleDateString()` renders differently server-side (UTC) vs. client (local timezone). React fixes it client-side but console shows a warning. Cosmetic only; functional.
 
 ---
 
 ## Next Tasks (Priority Order)
 
-1. **Finish leaderboard mobile polish** (bottom two info cards) — quick win, screenshot-critical.
+1. **Fix the `/dashboard` hydration mismatch** — format `joinedDate` deterministically (use UTC or a fixed string) to eliminate the console warning on a required-screenshot route.
 2. **Final QA pass** — walk `/`, `/dashboard`, `/day/12`, `/leaderboard` at 390px and 1440px; verify no overflow.
-3. **Optional:** Connect Vercel Git integration for auto-deploy on every push.
-4. **Optional:** Swap guest mode for real auth (Clerk or Supabase) if the demo needs login.
-5. **Future:** Implement AWS services (Cognito → Lambda/API Gateway → DynamoDB → S3) when moving beyond the demo.
+3. **Optional:** Finish leaderboard mobile polish (bottom two info cards) — non-required route, cosmetic only.
+4. **Optional:** Connect Vercel Git integration for auto-deploy on every push.
+5. **Optional:** Swap guest mode for real auth (Clerk or Supabase) if the demo needs login.
+6. **Future:** Implement AWS services (Cognito → Lambda/API Gateway → DynamoDB → S3) when moving beyond the demo.
 
 ---
 
 ## AI Usage Summary
 
-Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`** (12 entries as of the last commit). Highlights:
+Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`** (15 entries as of the last commit). Highlights:
 
 - Scaffolded the Next.js app and built all 4 routes
 - Converted to dark theme, added onboarding state, AI Mentor
@@ -190,6 +193,7 @@ Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`*
 - Added leaderboard with search/sort
 - Mobile-first optimization for 390px viewport
 - Deployed to Vercel, updated README, added AI usage log
+- **Added AI Learning Coach** — progress-aware contextual tips + working Q&A on the dashboard (mobile + desktop)
 
 ---
 
@@ -197,13 +201,13 @@ Full chronological log of AI-assisted work is maintained in **`AI_USAGE_LOG.md`*
 
 1. **Read this file first** — it contains the full project state.
 2. **Read `TODO.md`** for the task checklist (completed / current / remaining).
-3. **Check `git status`** — last commit was `137d803` (AI usage log). Everything was pushed to `main`.
-4. **Dev server:** run `npm run dev` from the `abtalks` directory.
+3. **Check `git status`** — working tree is dirty (AI Learning Coach changes not yet committed).
+4. **Dev server:** run `npm run dev` from the project root.
 5. **Live site:** https://abtalks-blond.vercel.app (re-deploy with `vercel --prod --yes` after changes).
-6. **Next action if resuming:** complete the leaderboard mobile polish (Priority 1), then run the final QA pass.
+6. **Next action if resuming:** fix the `/dashboard` hydration mismatch on `joinedDate`, then run the final QA pass.
 7. **Vercel CLI is installed and authenticated** — deploys are one command.
 8. **Remember:** update `AI_USAGE_LOG.md` and this file before every commit; show the log to the user for approval.
 
 ---
 
-*Last updated: 2026-08-08 · After commit `137d803`*
+*Last updated: 2026-08-08 · Before commit (AI Learning Coach + hydration mismatch discovery)*

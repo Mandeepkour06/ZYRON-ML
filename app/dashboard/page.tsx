@@ -3,6 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getTodayChallenge, getProgressPercentage, aiMentor } from '@/lib/data';
+import {
+  getCoachGreeting,
+  getCoachStatus,
+  getCoachTips,
+  getCoachResponse,
+  quickQuestions,
+  CoachMessage
+} from '@/lib/coach';
 
 interface StudentProgress {
   currentDay: number;
@@ -21,6 +29,9 @@ export default function Dashboard() {
     submissions: {}
   });
 
+  const [question, setQuestion] = useState('');
+  const [messages, setMessages] = useState<CoachMessage[]>([]);
+
   useEffect(() => {
     // Load progress from localStorage
     const savedProgress = localStorage.getItem('abtalks_progress');
@@ -33,6 +44,22 @@ export default function Dashboard() {
   const todayChallenge = getTodayChallenge(student);
   const progressPercentage = getProgressPercentage(student);
   const daysRemaining = 60 - student.completedDays.length;
+
+  const coachGreeting = getCoachGreeting(student);
+  const coachStatus = getCoachStatus(student);
+  const coachTips = getCoachTips(student);
+
+  const askCoach = (text: string) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    const reply = getCoachResponse(student, trimmed);
+    setMessages(prev => [
+      ...prev,
+      { role: 'student', text: trimmed },
+      { role: 'coach', text: reply }
+    ]);
+    setQuestion('');
+  };
 
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
@@ -102,6 +129,81 @@ export default function Dashboard() {
             </div>
             <div className="text-2xl sm:text-3xl font-bold text-white">{progressPercentage}%</div>
             <div className="text-gray-500 text-xs sm:text-sm mt-1">completed</div>
+          </div>
+        </div>
+
+        {/* Mobile-only AI Learning Coach — above the fold on 390px */}
+        <div className="lg:hidden mb-4 sm:mb-6">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 sm:p-6 shadow-sm text-white">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
+                🤖
+              </div>
+              <div className="min-w-0">
+                <h2 className="text-lg sm:text-xl font-bold truncate">CodeMentor AI</h2>
+                <p className="text-blue-100 text-xs sm:text-sm">Your AI Learning Coach</p>
+              </div>
+            </div>
+
+            <p className="text-white mb-1 text-sm sm:text-base">{coachGreeting}</p>
+            <p className="text-blue-200 text-xs sm:text-sm mb-4">{coachStatus}</p>
+
+            <div className="space-y-3 mb-4">
+              {coachTips.map((tip, i) => (
+                <div key={i} className="flex gap-2 items-start">
+                  <span className="text-blue-200 text-sm mt-1 flex-shrink-0">💡</span>
+                  <p className="text-blue-50 text-sm leading-relaxed">{tip}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-3">
+              {quickQuestions.map((qq) => (
+                <button
+                  key={qq}
+                  onClick={() => askCoach(qq)}
+                  className="px-3 py-2 bg-white/15 hover:bg-white/25 text-blue-50 text-xs rounded-full transition-colors min-h-[44px]"
+                >
+                  {qq}
+                </button>
+              ))}
+            </div>
+
+            {messages.length > 0 && (
+              <div className="mb-3 max-h-40 overflow-y-auto space-y-2">
+                {messages.map((m, i) => (
+                  <div
+                    key={i}
+                    className={`text-sm leading-relaxed rounded-lg px-3 py-2 ${
+                      m.role === 'coach'
+                        ? 'bg-white/15 text-blue-50'
+                        : 'bg-black/30 text-white'
+                    }`}
+                  >
+                    {m.text}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <form
+              onSubmit={(e) => { e.preventDefault(); askCoach(question); }}
+              className="flex gap-2"
+            >
+              <input
+                type="text"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Ask me anything..."
+                className="flex-1 min-w-0 px-3 py-2 bg-black/30 border border-white/20 text-white text-base rounded-lg placeholder-blue-200 outline-none focus:ring-2 focus:ring-white/40 min-h-[44px]"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-white text-blue-700 text-sm font-semibold rounded-lg hover:bg-blue-50 transition-colors min-h-[44px]"
+              >
+                Ask
+              </button>
+            </form>
           </div>
         </div>
 
@@ -202,22 +304,23 @@ export default function Dashboard() {
 
           {/* Sidebar */}
           <div className="space-y-4 sm:space-y-6">
-            {/* AI Mentor */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 sm:p-6 shadow-sm text-white">
+            {/* AI Mentor — hidden on mobile, visible on desktop (mobile uses the coach card above) */}
+            <div className="hidden lg:block bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 sm:p-6 shadow-sm text-white">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
                   🤖
                 </div>
                 <div className="min-w-0">
-                  <h2 className="text-lg sm:text-xl font-bold truncate">{aiMentor.name}</h2>
-                  <p className="text-blue-100 text-xs sm:text-sm">Your AI Guide</p>
+                  <h2 className="text-lg sm:text-xl font-bold truncate">CodeMentor AI</h2>
+                  <p className="text-blue-100 text-xs sm:text-sm">Your AI Learning Coach</p>
                 </div>
               </div>
 
-              <p className="text-white mb-4 text-sm sm:text-base">{aiMentor.greeting}</p>
+              <p className="text-white mb-1 text-sm sm:text-base">{coachGreeting}</p>
+              <p className="text-blue-200 text-xs sm:text-sm mb-4">{coachStatus}</p>
 
-              <div className="space-y-3">
-                {aiMentor.tips.map((tip, i) => (
+              <div className="space-y-3 mb-4">
+                {coachTips.map((tip, i) => (
                   <div key={i} className="flex gap-2 items-start">
                     <span className="text-blue-200 text-sm mt-1 flex-shrink-0">💡</span>
                     <p className="text-blue-50 text-sm leading-relaxed">{tip}</p>
@@ -225,9 +328,53 @@ export default function Dashboard() {
                 ))}
               </div>
 
-              <button className="mt-5 sm:mt-6 w-full px-4 py-3 bg-white/20 hover:bg-white/30 text-white rounded-lg font-medium transition-colors text-sm min-h-[44px]">
-                Ask Mentor a Question
-              </button>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {quickQuestions.map((qq) => (
+                  <button
+                    key={qq}
+                    onClick={() => askCoach(qq)}
+                    className="px-3 py-2 bg-white/15 hover:bg-white/25 text-blue-50 text-xs rounded-full transition-colors min-h-[44px]"
+                  >
+                    {qq}
+                  </button>
+                ))}
+              </div>
+
+              {messages.length > 0 && (
+                <div className="mb-3 max-h-40 overflow-y-auto space-y-2">
+                  {messages.map((m, i) => (
+                    <div
+                      key={i}
+                      className={`text-sm leading-relaxed rounded-lg px-3 py-2 ${
+                        m.role === 'coach'
+                          ? 'bg-white/15 text-blue-50'
+                          : 'bg-black/30 text-white'
+                      }`}
+                    >
+                      {m.text}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <form
+                onSubmit={(e) => { e.preventDefault(); askCoach(question); }}
+                className="flex gap-2"
+              >
+                <input
+                  type="text"
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  placeholder="Ask me anything..."
+                  className="flex-1 min-w-0 px-3 py-2 bg-black/30 border border-white/20 text-white text-base rounded-lg placeholder-blue-200 outline-none focus:ring-2 focus:ring-white/40 min-h-[44px]"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-white text-blue-700 text-sm font-semibold rounded-lg hover:bg-blue-50 transition-colors min-h-[44px]"
+                >
+                  Ask
+                </button>
+              </form>
             </div>
 
             {/* Quick Stats */}

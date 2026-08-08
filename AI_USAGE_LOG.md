@@ -100,6 +100,21 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Added `PROJECT_CONTEXT.md` (overview, hackathon requirements, progress, folder structure, design decisions, route map, deployment, GitHub/Vercel, AWS plans, bugs, next tasks, AI summary, continuation notes) and `TODO.md` (completed/current/remaining tasks, bugs, hackathon + deployment checklists).
 - **Files created:** `PROJECT_CONTEXT.md`, `TODO.md`
 
+### 14. AI Learning Coach on dashboard
+
+- **Goal:** Replace the static AI Mentor card with a progress-aware AI Learning Coach.
+- **Prompt:** "Proceed with the AI Learning Coach… keep it on the dashboard, use the existing mock/localStorage architecture, make the responses contextual to the student's progress."
+- **Summary:** Created `lib/coach.ts` — a pure-function module with progress-aware greetings, contextual tips (branched by days-completed/streak), and a rule-based Q&A engine covering today's challenge, streak, XP, milestones, motivation, and more. Every answer references the student's actual data. Added four one-tap quick-question chips for a demo-friendly interaction. Updated the dashboard sidebar to render the coach card with live greeting, status line, tips, quick-question chips, a scrollable conversation area, and a working input + Ask button. No new routes, no backend — reads the same `localStorage` progress.
+- **Files created:** `lib/coach.ts`
+- **Files modified:** `app/dashboard/page.tsx` (import swap, new state for Q&A, replaced static AI Mentor card with coach card)
+
+### 15. Restore and improve AI Mentor
+
+- **Goal:** Fix broken desktop AI Mentor after layout restructuring and restore the four quick-question buttons.
+- **Prompt:** "Restore the last known working AI Mentor state... Restore the four suggested questions on desktop."
+- **Summary:** After multiple layout attempts broke the desktop sidebar, reverted `app/dashboard/page.tsx` to the last committed state via `git checkout`. Re-applied the coach features cleanly: added coach imports, state, and computed values; added a mobile-only coach card (`lg:hidden`) before the main grid for 390px visibility; upgraded the sidebar AI Mentor card from the original static version (hardcoded tips, dead button) to the full coach version with contextual tips, four quick-question buttons, conversation area, and working input + Ask. Sidebar card uses `hidden lg:block` so it's hidden on mobile (replaced by the mobile coach card). Desktop layout completely untouched.
+- **Files modified:** `app/dashboard/page.tsx` (coach imports, state, mobile-only card, upgraded sidebar card)
+
 ---
 
 *Entries are appended automatically before each commit.*

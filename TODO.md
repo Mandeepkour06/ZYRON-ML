@@ -21,19 +21,21 @@
 - [x] README with live demo link
 - [x] AI usage log (`AI_USAGE_LOG.md`)
 - [x] Project context file (`PROJECT_CONTEXT.md`)
+- [x] AI Learning Coach on dashboard — contextual tips + working Q&A on mobile and desktop (replaces static AI Mentor)
 
 ---
 
 ## Current Task 🔄
 
-- **Create & maintain `TODO.md`** — initializing task tracker (this file).
+- **Fix `/dashboard` hydration mismatch** — `joinedDate` formatted differently server vs. client
 
 ---
 
 ## Remaining Tasks ⏳
 
-- [ ] Finish leaderboard mobile polish (bottom two info cards)
+- [ ] Fix hydration mismatch on `/dashboard` (`joinedDate` `toLocaleDateString()` renders UTC server-side, local timezone client-side)
 - [ ] Final QA pass: verify all 4 routes at 390px + 1440px, no overflow
+- [ ] Optional: leaderboard bottom info cards polish (non-required route)
 - [ ] Optional: connect Vercel Git auto-deploy on push
 - [ ] Optional: real authentication (Clerk / Supabase) to replace guest mode
 - [ ] Future: AWS integration (Cognito, API Gateway/Lambda, DynamoDB, S3)
@@ -42,7 +44,7 @@
 
 ## High-Priority Bugs
 
-- [ ] **None blocking** — all known issues are cosmetic/low priority.
+- [ ] **Low:** Hydration mismatch on `/dashboard` — `joinedDate` formatted via `toLocaleDateString()` differs between server (UTC) and client (local timezone). Functional; console warning only.
 - [ ] Low: Leaderboard bottom info cards partially mobile-polished.
 - [ ] Low: Re-verify zero horizontal scroll at 390px if any new content is added.
 
@@ -62,6 +64,7 @@
 - [x] Challenge completion works without URLs (demo mode)
 - [x] Progress persists (localStorage)
 - [x] README documents live demo
+- [x] AI Learning Coach with contextual tips + working Q&A on dashboard
 
 ---
 
@@ -76,4 +79,4 @@
 
 ---
 
-*Last updated: 2026-08-08 · After commit `137d803`*
+*Last updated: 2026-08-08 · Before commit (AI Learning Coach + hydration mismatch discovery)*
