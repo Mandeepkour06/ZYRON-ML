@@ -21,16 +21,17 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 text-center">
         <div className="space-y-6 sm:space-y-8">
-          <div className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500/20 text-blue-400 rounded-full text-xs sm:text-sm font-medium">
-            🚀 Transform Your Career in 60 Days
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 text-blue-400 rounded-full text-xs sm:text-sm font-medium border border-blue-500/20">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            Transform Your Career in 60 Days
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
             Build Real Projects.<br />
             <span className="text-blue-500">Ship Every Day.</span>
           </h1>
 
-          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-2">
+          <p className="text-lg sm:text-xl lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Join thousands of students who went from beginners to confident developers
             by building 60 real-world projects in 60 days.
           </p>
@@ -38,11 +39,11 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2 sm:pt-4">
             <Link
               href="/dashboard"
-              className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl active:scale-[0.98] min-h-[52px] flex items-center justify-center"
+              className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] min-h-[52px] flex items-center justify-center"
             >
               Start Your Challenge
             </Link>
-            <button className="w-full sm:w-auto px-8 py-4 bg-gray-800 text-gray-200 rounded-lg font-semibold text-base sm:text-lg border-2 border-gray-700 hover:border-gray-600 transition-colors min-h-[52px] flex items-center justify-center">
+            <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-gray-300 rounded-lg font-semibold text-base sm:text-lg border border-gray-700 hover:border-gray-500 hover:text-white transition-all min-h-[52px] flex items-center justify-center">
               Watch Demo
             </button>
           </div>
@@ -52,17 +53,20 @@ export default function Home() {
       {/* Stats */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 shadow-md text-center border border-gray-800">
-            <div className="text-3xl sm:text-4xl font-bold text-blue-500">15,000+</div>
-            <div className="text-gray-400 mt-2 text-sm sm:text-base">Active Students</div>
+          <div className="bg-gray-900 rounded-xl p-6 sm:p-8 text-center border border-gray-800/50">
+            <div className="text-2xl mb-3">👥</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white">15,000+</div>
+            <div className="text-gray-400 mt-2 text-sm">Active Students</div>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 shadow-md text-center border border-gray-800">
-            <div className="text-3xl sm:text-4xl font-bold text-blue-500">900,000+</div>
-            <div className="text-gray-400 mt-2 text-sm sm:text-base">Projects Built</div>
+          <div className="bg-gray-900 rounded-xl p-6 sm:p-8 text-center border border-gray-800/50">
+            <div className="text-2xl mb-3">🚀</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white">900,000+</div>
+            <div className="text-gray-400 mt-2 text-sm">Projects Built</div>
           </div>
-          <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 shadow-md text-center border border-gray-800">
-            <div className="text-3xl sm:text-4xl font-bold text-blue-500">87%</div>
-            <div className="text-gray-400 mt-2 text-sm sm:text-base">Complete the Challenge</div>
+          <div className="bg-gray-900 rounded-xl p-6 sm:p-8 text-center border border-gray-800/50">
+            <div className="text-2xl mb-3">🎯</div>
+            <div className="text-3xl sm:text-4xl font-bold text-white">87%</div>
+            <div className="text-gray-400 mt-2 text-sm">Complete the Challenge</div>
           </div>
         </div>
       </section>
@@ -73,31 +77,34 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
           <div className="text-center space-y-4">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto text-2xl">
+            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/20">
               📝
             </div>
+            <div className="text-blue-500 font-semibold text-sm">Step 1</div>
             <h3 className="text-lg sm:text-xl font-semibold text-white">Daily Challenge</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
               Get a new real-world project every day. Each challenge builds on the previous one.
             </p>
           </div>
 
           <div className="text-center space-y-4">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto text-2xl">
+            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/20">
               💻
             </div>
+            <div className="text-blue-500 font-semibold text-sm">Step 2</div>
             <h3 className="text-lg sm:text-xl font-semibold text-white">Build & Submit</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
               Code your solution, push to GitHub, and share your progress on LinkedIn.
             </p>
           </div>
 
           <div className="text-center space-y-4">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto text-2xl">
+            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-lg shadow-blue-600/20">
               🏆
             </div>
+            <div className="text-blue-500 font-semibold text-sm">Step 3</div>
             <h3 className="text-lg sm:text-xl font-semibold text-white">Level Up</h3>
-            <p className="text-gray-400 text-sm sm:text-base">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
               Track your streak, earn achievements, and build a portfolio that gets you hired.
             </p>
           </div>
@@ -152,12 +159,12 @@ export default function Home() {
               avatar: "👩‍🔬"
             }
           ].map((testimonial, i) => (
-            <div key={i} className="bg-gray-900 rounded-xl p-5 sm:p-6 shadow-md border border-gray-800">
-              <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">{testimonial.avatar}</div>
-              <p className="text-gray-300 mb-4 italic text-sm sm:text-base leading-relaxed">"{testimonial.quote}"</p>
-              <div>
-                <div className="font-semibold text-white text-sm sm:text-base">{testimonial.name}</div>
-                <div className="text-xs sm:text-sm text-gray-400">{testimonial.role}</div>
+            <div key={i} className="bg-gray-900 rounded-xl p-6 sm:p-8 border border-gray-800/50">
+              <div className="text-4xl mb-4">{testimonial.avatar}</div>
+              <p className="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">"{testimonial.quote}"</p>
+              <div className="border-t border-gray-800 pt-4">
+                <div className="font-semibold text-white text-sm">{testimonial.name}</div>
+                <div className="text-xs text-blue-400 mt-1">{testimonial.role}</div>
               </div>
             </div>
           ))}

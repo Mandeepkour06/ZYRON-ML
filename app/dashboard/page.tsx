@@ -95,40 +95,40 @@ export default function Dashboard() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
-          <div className="bg-gray-900 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-800">
-            <div className="flex items-center justify-between mb-1 sm:mb-2">
-              <span className="text-gray-400 text-xs sm:text-sm font-medium">Current Day</span>
-              <span className="text-xl sm:text-2xl">📅</span>
+          <div className="bg-gray-900 rounded-xl p-4 sm:p-5 border border-gray-800/50">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📅</span>
+              <span className="text-gray-400 text-xs font-medium">Current Day</span>
             </div>
             <div className="text-2xl sm:text-3xl font-bold text-white">{student.currentDay}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1">of 60 days</div>
+            <div className="text-gray-500 text-xs mt-1">of 60 days</div>
           </div>
 
-          <div className="bg-gray-900 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-800">
-            <div className="flex items-center justify-between mb-1 sm:mb-2">
-              <span className="text-gray-400 text-xs sm:text-sm font-medium">XP</span>
-              <span className="text-xl sm:text-2xl">⭐</span>
+          <div className="bg-gray-900 rounded-xl p-4 sm:p-5 border border-gray-800/50">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">⭐</span>
+              <span className="text-gray-400 text-xs font-medium">XP</span>
             </div>
             <div className="text-2xl sm:text-3xl font-bold text-white">{student.xp}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1">points</div>
+            <div className="text-gray-500 text-xs mt-1">points</div>
           </div>
 
-          <div className="bg-gray-900 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-800">
-            <div className="flex items-center justify-between mb-1 sm:mb-2">
-              <span className="text-gray-400 text-xs sm:text-sm font-medium">Streak</span>
-              <span className="text-xl sm:text-2xl">🔥</span>
+          <div className="bg-gray-900 rounded-xl p-4 sm:p-5 border border-gray-800/50">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">🔥</span>
+              <span className="text-gray-400 text-xs font-medium">Streak</span>
             </div>
             <div className="text-2xl sm:text-3xl font-bold text-white">{student.streak}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1">days</div>
+            <div className="text-gray-500 text-xs mt-1">days</div>
           </div>
 
-          <div className="bg-gray-900 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-800">
-            <div className="flex items-center justify-between mb-1 sm:mb-2">
-              <span className="text-gray-400 text-xs sm:text-sm font-medium">Progress</span>
-              <span className="text-xl sm:text-2xl">📊</span>
+          <div className="bg-gray-900 rounded-xl p-4 sm:p-5 border border-gray-800/50">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📊</span>
+              <span className="text-gray-400 text-xs font-medium">Progress</span>
             </div>
             <div className="text-2xl sm:text-3xl font-bold text-white">{progressPercentage}%</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1">completed</div>
+            <div className="text-gray-500 text-xs mt-1">completed</div>
           </div>
         </div>
 
@@ -136,13 +136,13 @@ export default function Dashboard() {
           {/* Main Content */}
           <div className="lg:col-span-2 lg:self-start space-y-4 sm:space-y-6">
             {/* Today's Challenge */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 shadow-sm border border-gray-800">
+            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 lg:p-8 border border-gray-800/50">
               <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Today's Challenge</h2>
-                <span className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium ${
-                  todayChallenge?.difficulty === 'beginner' ? 'bg-green-500/20 text-green-400' :
-                  todayChallenge?.difficulty === 'intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                  'bg-red-500/20 text-red-400'
+                <h2 className="text-lg sm:text-xl font-bold text-white">Today's Challenge</h2>
+                <span className={`px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium ${
+                  todayChallenge?.difficulty === 'beginner' ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
+                  todayChallenge?.difficulty === 'intermediate' ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
+                  'bg-red-500/10 text-red-400 border border-red-500/20'
                 }`}>
                   {todayChallenge?.difficulty}
                 </span>
@@ -150,16 +150,16 @@ export default function Dashboard() {
 
               {todayChallenge ? (
                 <>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2 sm:mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">
                     Day {todayChallenge.day}: {todayChallenge.title}
                   </h3>
                   <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     {todayChallenge.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-5 sm:mb-8">
+                  <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
                     {todayChallenge.tags.map((tag, i) => (
-                      <span key={i} className="px-2.5 py-1 sm:px-3 sm:py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs sm:text-sm">
+                      <span key={i} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs sm:text-sm border border-gray-700">
                         {tag}
                       </span>
                     ))}
@@ -167,7 +167,7 @@ export default function Dashboard() {
 
                   <Link
                     href={`/day/${todayChallenge.day}`}
-                    className="inline-flex w-full sm:w-auto items-center justify-center px-6 py-4 sm:px-8 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-colors shadow-lg active:scale-[0.98] min-h-[52px]"
+                    className="inline-flex w-full sm:w-auto items-center justify-center px-6 py-3.5 sm:px-8 bg-blue-600 text-white rounded-lg font-semibold text-sm sm:text-base hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl active:scale-[0.98] min-h-[48px]"
                   >
                     Start Today's Challenge →
                   </Link>

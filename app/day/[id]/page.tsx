@@ -282,30 +282,28 @@ export default function ChallengeDayPage() {
 
         {/* Header */}
         <div className="mb-6 sm:mb-8">
-          <div className="flex flex-wrap items-center gap-3 mb-3 sm:mb-4">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-              Day {challenge.day}: {challenge.title}
-            </h1>
-          </div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 sm:mb-5">
+            Day {challenge.day}: {challenge.title}
+          </h1>
 
-          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4">
-            <span className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border ${getDifficultyColor()}`}>
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-5">
+            <span className={`px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium border ${getDifficultyColor()}`}>
               {challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
             </span>
-            <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-500/20 text-blue-400 rounded-lg text-xs sm:text-sm font-medium border border-blue-500/30 inline-flex items-center">
+            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-gray-300 rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
               ⏱️ {challenge.estimatedTime}
             </span>
-            <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-yellow-500/20 text-yellow-400 rounded-lg text-xs sm:text-sm font-medium border border-yellow-500/30 inline-flex items-center">
+            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-yellow-400 rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
               ⭐ {challenge.xpReward} XP
             </span>
             {isCompleted && (
-              <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-green-500 text-white rounded-lg text-xs sm:text-sm font-medium">
+              <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-green-500/10 text-green-400 rounded-lg text-xs sm:text-sm font-medium border border-green-500/20">
                 ✓ Completed
               </span>
             )}
           </div>
 
-          <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6">{challenge.description}</p>
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-5">{challenge.description}</p>
 
           <div className="flex flex-wrap gap-2">
             {challenge.tags.map((tag, i) => (

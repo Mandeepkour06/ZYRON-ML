@@ -111,3 +111,38 @@ select {
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
 }
+
+/* Progress ring animation */
+@keyframes progress-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+.animate-progress {
+  animation: progress-fill 1s ease-out forwards;
+}
+
+/* Subtle hover lift */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Journey timeline connector */
+.timeline-connector {
+  position: relative;
+}
+.timeline-connector::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: -8px;
+  width: 2px;
+  background: #1f2937;
+}
+.timeline-connector:last-child::before {
+  display: none;
+}
