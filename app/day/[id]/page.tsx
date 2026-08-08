@@ -71,11 +71,11 @@ export default function ChallengeDayPage() {
 
   if (!challenge) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#0A0F1C] flex items-center justify-center px-4">
         <div className="text-center">
           <h1 className="text-2xl sm:text-4xl font-bold text-white mb-4">Challenge Not Found</h1>
           <p className="text-gray-400 mb-6">This challenge doesn't exist yet.</p>
-          <Link href="/dashboard" className="text-blue-500 hover:text-blue-400 font-medium inline-block py-3">
+          <Link href="/dashboard" className="text-[#3B82F6] hover:text-[#60A5FA] font-medium inline-block py-3">
             ← Back to Dashboard
           </Link>
         </div>
@@ -85,11 +85,11 @@ export default function ChallengeDayPage() {
 
   if (isLocked) {
     return (
-      <div className="min-h-screen bg-black overflow-x-hidden">
-        <nav className="bg-gray-900 border-b border-gray-800">
+      <div className="min-h-screen bg-[#0A0F1C] overflow-x-hidden">
+        <nav className="bg-[#111827] border-b border-[#1F2937]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-14 sm:h-16">
-              <Link href="/" className="text-xl sm:text-2xl font-bold text-blue-500">
+              <Link href="/" className="text-xl sm:text-2xl font-bold text-[#3B82F6]">
                 ABTalks
               </Link>
               <Link href="/dashboard" className="text-gray-400 hover:text-white text-sm">
@@ -107,7 +107,7 @@ export default function ChallengeDayPage() {
           </p>
           <Link
             href="/dashboard"
-            className="inline-block px-6 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors min-h-[52px]"
+            className="inline-block px-6 py-4 bg-[#3B82F6] text-white rounded-lg font-semibold hover:bg-[#2563EB] transition-colors min-h-[52px]"
           >
             Back to Dashboard
           </Link>
@@ -218,9 +218,9 @@ export default function ChallengeDayPage() {
 
   const getDifficultyColor = () => {
     switch (challenge.difficulty) {
-      case 'beginner': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'intermediate': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'advanced': return 'bg-red-500/20 text-red-400 border-red-500/30';
+      case 'beginner': return 'bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20';
+      case 'intermediate': return 'bg-[#FBBF24]/10 text-[#FBBF24] border-[#FBBF24]/20';
+      case 'advanced': return 'bg-[#EF4444]/10 text-[#EF4444] border-[#EF4444]/20';
     }
   };
 
@@ -235,11 +235,11 @@ export default function ChallengeDayPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0F1C] overflow-x-hidden">
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-auto max-w-md z-50">
-          <div className="bg-gray-900 border border-blue-500 rounded-lg p-4 shadow-lg animate-fade-in">
+          <div className="bg-[#111827] border border-[#3B82F6] rounded-lg p-4 shadow-lg animate-fade-in">
             <p className="text-white text-sm sm:text-base">{toastMessage}</p>
           </div>
         </div>
@@ -247,19 +247,19 @@ export default function ChallengeDayPage() {
 
       {/* XP Animation */}
       {showXPAnimation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A0F1C]/80 backdrop-blur-sm px-4">
           <div className="text-center animate-bounce">
             <div className="text-6xl sm:text-8xl mb-4">🎉</div>
-            <div className="text-4xl sm:text-6xl font-bold text-yellow-400 mb-2">+{challenge.xpReward} XP</div>
+            <div className="text-4xl sm:text-6xl font-bold text-[#FBBF24] mb-2">+{challenge.xpReward} XP</div>
             <div className="text-xl sm:text-2xl text-white">Challenge Complete!</div>
           </div>
         </div>
       )}
 
-      <nav className="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+      <nav className="bg-[#111827] border-b border-[#1F2937] sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
-            <Link href="/" className="text-xl sm:text-2xl font-bold text-blue-500">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-[#3B82F6]">
               ABTalks
             </Link>
             <Link href="/dashboard" className="text-gray-400 hover:text-white font-medium text-sm inline-flex items-center gap-1">
@@ -276,7 +276,7 @@ export default function ChallengeDayPage() {
           <Link href="/dashboard" className="text-gray-400 hover:text-white text-sm font-medium">
             Dashboard
           </Link>
-          <span className="text-gray-600 text-sm">/</span>
+          <span className="text-[#6B7280] text-sm">/</span>
           <span className="text-white text-sm font-medium">Day {challenge.day}</span>
         </div>
 
@@ -290,24 +290,24 @@ export default function ChallengeDayPage() {
             <span className={`px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium border ${getDifficultyColor()}`}>
               {challenge.difficulty.charAt(0).toUpperCase() + challenge.difficulty.slice(1)}
             </span>
-            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-gray-300 rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
+            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-gray-400 rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
               ⏱️ {challenge.estimatedTime}
             </span>
-            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-yellow-400 rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
+            <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-gray-800 text-[#FBBF24] rounded-lg text-xs sm:text-sm font-medium border border-gray-700 inline-flex items-center gap-1.5">
               ⭐ {challenge.xpReward} XP
             </span>
             {isCompleted && (
-              <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-green-500/10 text-green-400 rounded-lg text-xs sm:text-sm font-medium border border-green-500/20">
+              <span className="px-3 py-1.5 sm:px-4 sm:py-1.5 bg-[#10B981]/10 text-[#10B981] rounded-lg text-xs sm:text-sm font-medium border border-[#10B981]/20">
                 ✓ Completed
               </span>
             )}
           </div>
 
-          <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-5">{challenge.description}</p>
+          <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-4 sm:mb-5">{challenge.description}</p>
 
           <div className="flex flex-wrap gap-2">
             {challenge.tags.map((tag, i) => (
-              <span key={i} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs sm:text-sm border border-gray-700">
+              <span key={i} className="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-xs sm:text-sm border border-gray-700">
                 {tag}
               </span>
             ))}
@@ -318,14 +318,14 @@ export default function ChallengeDayPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 lg:self-start space-y-4 sm:space-y-6">
             {/* Skills Section */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
                 <span>🎯</span> Skills You'll Learn
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3">
                 {challenge.skills.map((skill, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-300 text-sm sm:text-base py-1">
-                    <span className="text-blue-500 flex-shrink-0">•</span>
+                  <div key={i} className="flex items-center gap-2 text-gray-400 text-sm sm:text-base py-1">
+                    <span className="text-[#3B82F6] flex-shrink-0">•</span>
                     <span>{skill}</span>
                   </div>
                 ))}
@@ -333,23 +333,23 @@ export default function ChallengeDayPage() {
             </div>
 
             {/* Instructions */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-5 sm:mb-6 flex items-center gap-2">
                 <span>📋</span> Step-by-Step Instructions
               </h2>
               <div className="space-y-5 sm:space-y-6">
                 {challenge.instructions.map((instruction) => (
-                  <div key={instruction.step} className="border-l-4 border-blue-500 pl-4 sm:pl-6">
+                  <div key={instruction.step} className="border-l-4 border-[#3B82F6] pl-4 sm:pl-6">
                     <div className="flex items-start gap-3 mb-2">
-                      <span className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">
+                      <span className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-[#3B82F6] text-white rounded-full flex items-center justify-center font-bold text-xs sm:text-sm">
                         {instruction.step}
                       </span>
                       <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mt-1 leading-snug">{instruction.title}</h3>
                     </div>
-                    <p className="text-gray-300 mb-3 text-sm sm:text-base leading-relaxed">{instruction.description}</p>
+                    <p className="text-gray-400 mb-3 text-sm sm:text-base leading-relaxed">{instruction.description}</p>
                     {instruction.code && (
-                      <pre className="bg-black border border-gray-700 rounded-lg p-3 sm:p-4 overflow-x-auto">
-                        <code className="text-green-400 text-xs sm:text-sm font-mono whitespace-pre">{instruction.code}</code>
+                      <pre className="bg-[#0A0F1C] border border-gray-700 rounded-lg p-3 sm:p-4 overflow-x-auto">
+                        <code className="text-[#34D399] text-xs sm:text-sm font-mono whitespace-pre">{instruction.code}</code>
                       </pre>
                     )}
                   </div>
@@ -358,7 +358,7 @@ export default function ChallengeDayPage() {
             </div>
 
             {/* Requirements Checklist */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span>✅</span> Requirements Checklist
               </h2>
@@ -366,43 +366,43 @@ export default function ChallengeDayPage() {
                 {challenge.requirements.map((req) => (
                   <label
                     key={req.id}
-                    className="flex items-start gap-3 p-3 sm:p-3.5 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-750 transition-colors active:bg-gray-700"
+                    className="flex items-start gap-3 p-3 sm:p-3.5 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors active:bg-gray-700"
                   >
                     <input
                       type="checkbox"
                       checked={checkedRequirements[req.id] || false}
                       onChange={() => handleRequirementToggle(req.id)}
-                      className="mt-0.5 w-5 h-5 sm:w-5 sm:h-5 rounded border-gray-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-gray-900 flex-shrink-0"
+                      className="mt-0.5 w-5 h-5 sm:w-5 sm:h-5 rounded border-gray-600 text-[#2563EB] focus:ring-[#3B82F6] focus:ring-offset-[#111827] flex-shrink-0"
                     />
-                    <span className={`flex-1 text-sm sm:text-base leading-relaxed ${checkedRequirements[req.id] ? 'line-through text-gray-500' : 'text-gray-300'}`}>
+                    <span className={`flex-1 text-sm sm:text-base leading-relaxed ${checkedRequirements[req.id] ? 'line-through text-gray-500' : 'text-gray-400'}`}>
                       {req.text}
                     </span>
                   </label>
                 ))}
               </div>
               {allRequirementsChecked && (
-                <div className="mt-4 p-3 bg-green-500/20 border border-green-500 rounded-lg text-center">
-                  <span className="text-green-400 font-medium text-sm sm:text-base">🎉 All requirements checked! Ready to complete.</span>
+                <div className="mt-4 p-3 bg-[#10B981]/10 border border-[#10B981] rounded-lg text-center">
+                  <span className="text-[#10B981] font-medium text-sm sm:text-base">🎉 All requirements checked! Ready to complete.</span>
                 </div>
               )}
             </div>
 
             {/* Submit Project */}
             {!isCompleted && (
-              <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+              <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                   <span>🚀</span> Complete Challenge
                 </h2>
 
-                <div className="mb-5 sm:mb-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                  <p className="text-blue-300 text-sm leading-relaxed">
+                <div className="mb-5 sm:mb-6 p-4 bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded-lg">
+                  <p className="text-[#60A5FA] text-sm leading-relaxed">
                     <strong>Hackathon Demo Mode:</strong> URLs are optional. You can complete challenges without submitting links.
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                   <div>
-                    <label htmlFor="github" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="github" className="block text-sm font-medium text-gray-400 mb-2">
                       GitHub Repository URL <span className="text-gray-500">(Optional)</span>
                     </label>
                     <input
@@ -411,12 +411,12 @@ export default function ChallengeDayPage() {
                       value={githubUrl}
                       onChange={(e) => setGithubUrl(e.target.value)}
                       placeholder="https://github.com/yourusername/project-name"
-                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
+                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="live" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="live" className="block text-sm font-medium text-gray-400 mb-2">
                       Live Demo URL <span className="text-gray-500">(Optional)</span>
                     </label>
                     <input
@@ -425,13 +425,13 @@ export default function ChallengeDayPage() {
                       value={liveUrl}
                       onChange={(e) => setLiveUrl(e.target.value)}
                       placeholder="https://your-project.vercel.app"
-                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
+                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-300 mb-2">
-                      LinkedIn Post URL <span className="text-blue-400">(Required for proof)</span>
+                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-400 mb-2">
+                      LinkedIn Post URL <span className="text-[#60A5FA]">(Required for proof)</span>
                     </label>
                     <input
                       type="url"
@@ -439,7 +439,7 @@ export default function ChallengeDayPage() {
                       value={linkedinUrl}
                       onChange={(e) => setLinkedinUrl(e.target.value)}
                       placeholder="https://linkedin.com/posts/yourusername-..."
-                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
+                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-[#3B82F6] focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
                     />
                     <p className="mt-1.5 text-xs text-gray-500">Share your completed project on LinkedIn and paste the post URL here as proof of work.</p>
                   </div>
@@ -449,7 +449,7 @@ export default function ChallengeDayPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="flex-1 px-6 py-4 bg-blue-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed active:scale-[0.98] min-h-[52px]"
+                        className="flex-1 px-6 py-4 bg-[#3B82F6] text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-[#2563EB] transition-colors disabled:bg-gray-700 disabled:cursor-not-allowed active:scale-[0.98] min-h-[52px]"
                       >
                         {isSubmitting ? 'Submitting...' : '🚀 Submit Project'}
                       </button>
@@ -457,7 +457,7 @@ export default function ChallengeDayPage() {
                     <button
                       type="button"
                       onClick={handleMarkComplete}
-                      className="flex-1 px-6 py-4 bg-green-600 text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-green-700 transition-colors active:scale-[0.98] min-h-[52px]"
+                      className="flex-1 px-6 py-4 bg-[#10B981] text-white rounded-lg font-semibold text-base sm:text-lg hover:bg-[#059669] transition-colors active:scale-[0.98] min-h-[52px]"
                     >
                       ✓ Mark as Completed
                     </button>
@@ -467,10 +467,10 @@ export default function ChallengeDayPage() {
             )}
 
             {isCompleted && (
-              <div className="bg-green-500/20 border border-green-500 rounded-xl p-6 sm:p-8 text-center">
+              <div className="bg-[#10B981]/10 border border-[#10B981] rounded-xl p-6 sm:p-8 text-center">
                 <div className="text-5xl sm:text-6xl mb-4">✅</div>
-                <h3 className="text-xl sm:text-2xl font-bold text-green-400 mb-2">Challenge Completed!</h3>
-                <p className="text-green-300 mb-6 text-sm sm:text-base">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#10B981] mb-2">Challenge Completed!</h3>
+                <p className="text-[#34D399] mb-6 text-sm sm:text-base">
                   You've already completed this challenge. Keep up the great work!
                 </p>
                 {studentProgress.submissions[dayId] && (
@@ -489,7 +489,7 @@ export default function ChallengeDayPage() {
                 )}
                 <Link
                   href="/dashboard"
-                  className="inline-block w-full sm:w-auto px-6 py-4 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors min-h-[52px]"
+                  className="inline-block w-full sm:w-auto px-6 py-4 bg-[#10B981] text-white rounded-lg font-semibold hover:bg-[#059669] transition-colors min-h-[52px]"
                 >
                   Back to Dashboard
                 </Link>
@@ -500,7 +500,7 @@ export default function ChallengeDayPage() {
           {/* Sidebar */}
           <div className="space-y-4 sm:space-y-6">
             {/* Resources */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
               <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-4 flex items-center gap-2">
                 <span>📚</span> Resources
               </h2>
@@ -511,7 +511,7 @@ export default function ChallengeDayPage() {
                     href={resource.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block p-3 bg-gray-800 rounded-lg hover:bg-gray-750 transition-colors border border-gray-700 hover:border-blue-500 active:bg-gray-700"
+                    className="block p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700 hover:border-[#3B82F6] active:bg-gray-700"
                   >
                     <div className="flex items-start gap-3">
                       <span className="text-xl sm:text-2xl flex-shrink-0">{getResourceIcon(resource.type)}</span>
@@ -527,7 +527,7 @@ export default function ChallengeDayPage() {
             </div>
 
             {/* Challenge Info */}
-            <div className="bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-800">
+            <div className="bg-[#111827] rounded-xl p-5 sm:p-6 border border-[#1F2937]">
               <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-4">Challenge Info</h2>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
@@ -540,7 +540,7 @@ export default function ChallengeDayPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">XP Reward</span>
-                  <span className="font-medium text-yellow-400">{challenge.xpReward} XP</span>
+                  <span className="font-medium text-[#FBBF24]">{challenge.xpReward} XP</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Requirements</span>
@@ -577,7 +577,7 @@ export default function ChallengeDayPage() {
         </div>
 
         {/* Navigation */}
-        <div className="mt-8 sm:mt-12 flex justify-between items-center border-t border-gray-800 pt-6 sm:pt-8 gap-3">
+        <div className="mt-8 sm:mt-12 flex justify-between items-center border-t border-[#1F2937] pt-6 sm:pt-8 gap-3">
           {dayId > 1 ? (
             <Link
               href={`/day/${dayId - 1}`}

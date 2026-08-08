@@ -179,6 +179,24 @@ A chronological record of AI-assisted development on the ABTalks 60-Day Challeng
 - **Summary:** Removed the secondary "Watch Demo" button from the hero section on `/`. Kept "Start Your Challenge" as the sole CTA. Verified layout at 390px and desktop — no awkward empty space, hero remains balanced.
 - **Files modified:** `app/page.tsx`
 
+### 26. Propose new color theme/palette
+
+- **Prompt:** "I want to focus ONLY on the visual theme and make the website feel much more attractive, modern, energetic, and clickable. Keep the existing layout and content, but improve overall color palette, CTA colors, card styling, accent colors, hero impact, gradients, typography contrast, hover states, and visual consistency across all three routes."
+- **Summary:** Proposed a cohesive color theme with electric blue primary, warm orange/red accents for streaks and XP, emerald green for success states, and deep navy backgrounds. Explained application across all three routes while maintaining existing layout structure.
+- **Files modified:** None (proposal only)
+
+### 27. Implement new color theme across all routes
+
+- **Prompt:** "Go ahead with this color theme. Keep the existing layout, structure, content, and functionality exactly as they are. Prioritize strong CTA contrast, clear visual hierarchy, consistent color meaning, excellent readability, attractive 390px mobile experience, and a cohesive ABTalks visual identity."
+- **Summary:** Implemented Deep Navy (#0A0F1C) background, Electric Blue (#3B82F6) primary CTA, Warm Orange (#F97316) for streaks, Gold (#FBBF24) for XP, Emerald (#10B981) for success states. Updated the landing and dashboard routes with refined card backgrounds, subtle borders, stronger CTA shadows, and consistent accent colors. Subtle gradients and shadows only — no neon or gaming aesthetic.
+- **Files modified:** `app/globals.css`, `app/page.tsx`, `app/dashboard/page.tsx`
+
+### 28. Apply color theme to `/day/[id]` challenge pages
+
+- **Prompt:** "Proceed with finishing the color theme on `/day/12`. Apply the already-approved ABTalks color palette consistently... Do NOT modify `/leaderboard`. Do NOT add features. Do NOT redesign the layout. Also correct `AI_USAGE_LOG.md` entry #27 if it inaccurately claims that `/day/[id]/page.tsx` was modified during the previous color-theme work."
+- **Summary:** Applied the approved palette to `app/day/[id]/page.tsx`, which entry #27 had not actually updated. Replaced the remaining old black/gray/blue shades: page/nav/code-block backgrounds → Deep Navy (#0A0F1C), cards → Card Dark (#111827) with Card Border (#1F2937) borders, primary CTA → Electric Blue (#3B82F6) with Blue Hover (#2563EB), secondary blue text → Blue Light (#60A5FA), XP/streak → Gold (#FBBF24), success/completion → Emerald (#10B981), and difficulty badges mapped to emerald/gold/red (#EF4444). Also fixed entry #27's inaccurate file list. Kept layout, content, GitHub + LinkedIn proof flow, navigation, and completion flow unchanged. Verified at 390px with no horizontal overflow; all routes return HTTP 200. `/leaderboard` intentionally left unmodified (non-required route).
+- **Files modified:** `app/day/[id]/page.tsx`, `AI_USAGE_LOG.md`
+
 ---
 
 *Entries are appended automatically before each commit.*
