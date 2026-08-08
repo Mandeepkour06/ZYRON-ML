@@ -10,7 +10,7 @@ interface StudentProgress {
   xp: number;
   streak: number;
   completedDays: number[];
-  submissions: { [key: number]: { githubUrl?: string; liveUrl?: string; completedAt: string } };
+  submissions: { [key: number]: { githubUrl?: string; liveUrl?: string; linkedinUrl?: string; completedAt: string } };
 }
 
 export default function ChallengeDayPage() {
@@ -30,6 +30,7 @@ export default function ChallengeDayPage() {
 
   const [githubUrl, setGithubUrl] = useState('');
   const [liveUrl, setLiveUrl] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
@@ -47,6 +48,7 @@ export default function ChallengeDayPage() {
       if (progress.submissions[dayId]) {
         setGithubUrl(progress.submissions[dayId].githubUrl || '');
         setLiveUrl(progress.submissions[dayId].liveUrl || '');
+        setLinkedinUrl(progress.submissions[dayId].linkedinUrl || '');
       }
     }
 
@@ -131,7 +133,7 @@ export default function ChallengeDayPage() {
     }
   };
 
-  const completeChallenge = (githubUrl: string, liveUrl: string, isDemoMode: boolean) => {
+  const completeChallenge = (githubUrl: string, liveUrl: string, linkedinUrl: string, isDemoMode: boolean) => {
     // Update progress
     const newCompletedDays = [...new Set([...studentProgress.completedDays, dayId])];
     const newXP = studentProgress.xp + challenge.xpReward;
@@ -151,6 +153,7 @@ export default function ChallengeDayPage() {
         [dayId]: {
           githubUrl: githubUrl || undefined,
           liveUrl: liveUrl || undefined,
+          linkedinUrl: linkedinUrl || undefined,
           completedAt: new Date().toISOString()
         }
       }
@@ -201,14 +204,14 @@ export default function ChallengeDayPage() {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      const isDemoMode = !githubUrl && !liveUrl;
-      completeChallenge(githubUrl, liveUrl, isDemoMode);
+      const isDemoMode = !githubUrl && !liveUrl && !linkedinUrl;
+      completeChallenge(githubUrl, liveUrl, linkedinUrl, isDemoMode);
     }, 1000);
   };
 
   const handleMarkComplete = () => {
-    const isDemoMode = !githubUrl && !liveUrl;
-    completeChallenge(githubUrl, liveUrl, isDemoMode);
+    const isDemoMode = !githubUrl && !liveUrl && !linkedinUrl;
+    completeChallenge(githubUrl, liveUrl, linkedinUrl, isDemoMode);
   };
 
   const allRequirementsChecked = challenge.requirements.every(req => checkedRequirements[req.id]);
@@ -428,8 +431,23 @@ export default function ChallengeDayPage() {
                     />
                   </div>
 
+                  <div>
+                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-300 mb-2">
+                      LinkedIn Post URL <span className="text-blue-400">(Required for proof)</span>
+                    </label>
+                    <input
+                      type="url"
+                      id="linkedin"
+                      value={linkedinUrl}
+                      onChange={(e) => setLinkedinUrl(e.target.value)}
+                      placeholder="https://linkedin.com/posts/yourusername-..."
+                      className="w-full px-4 py-3 sm:py-3.5 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-500 text-sm sm:text-base min-h-[48px]"
+                    />
+                    <p className="mt-1.5 text-xs text-gray-500">Share your completed project on LinkedIn and paste the post URL here as proof of work.</p>
+                  </div>
+
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                    {(githubUrl || liveUrl) && (
+                    {(githubUrl || liveUrl || linkedinUrl) && (
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -465,6 +483,9 @@ export default function ChallengeDayPage() {
                     )}
                     {studentProgress.submissions[dayId].liveUrl && (
                       <p className="text-gray-400 text-sm break-all">Live: {studentProgress.submissions[dayId].liveUrl}</p>
+                    )}
+                    {studentProgress.submissions[dayId].linkedinUrl && (
+                      <p className="text-gray-400 text-sm break-all">LinkedIn: {studentProgress.submissions[dayId].linkedinUrl}</p>
                     )}
                   </div>
                 )}
